@@ -1,0 +1,19 @@
+{
+  "name": "appelon",
+  "version": "1.0.0",
+  "description": "Avalon in its enhance app form",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Skipdrive/appelon.git"
+  },
+  "author": "",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Skipdrive/appelon/issues"
+  },
+  "homepage": "https://github.com/Skipdrive/appelon#readme"
+}
