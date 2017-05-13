@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Skipdrive/appelon/issues"
   },
-  "homepage": "https://github.com/Skipdrive/appelon#readme"
+  "homepage": "https://github.com/Skipdrive/appelon#readme",
+  "dependencies": {
+    "webpack": "^2.5.1"
+  }
 }
