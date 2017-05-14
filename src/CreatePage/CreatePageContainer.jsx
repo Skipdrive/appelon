@@ -11,10 +11,23 @@ export class CreatePageContainer extends React.Component {
     this.state = {
       code: props.code,
     };
+
+    this.roles = [];
   }
 
   handleStartClick() {
+    console.log(this.roles);
+  }
 
+  handleCheckboxChange(e) {
+    if (e.target.checked) {
+        this.roles.push(e.target.id);
+    } else {
+      const idx = this.roles.indexOf(e.target.id);
+      if (idx > -1) {
+          this.roles.splice(idx, 1);
+      }
+    }
   }
 
   render() {
@@ -22,6 +35,7 @@ export class CreatePageContainer extends React.Component {
       <div>
         <CreatePageView
           handleStartClick={ () => this.handleStartClick() }
+          handleCheckboxChange={ (e) => this.handleCheckboxChange(e) }
           code={this.props.match.params.code}
         />
       </div>

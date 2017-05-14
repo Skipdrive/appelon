@@ -4,6 +4,7 @@ import { roles } from '../constants';
 export const CreatePageView = ({
   code,
   handleStartClick,
+  handleCheckboxChange
 }) => {
 
   const roleDivs = [];
@@ -11,7 +12,7 @@ export const CreatePageView = ({
     for (let i = 0; i < roles[role].max_count; i++) {
         roleDivs.push(
           <div>
-            {role}<input type="checkbox" id={role} /><br />
+            {role}<input onChange={handleCheckboxChange} type="checkbox" id={role} /><br />
           </div>
         );
     }
@@ -19,8 +20,9 @@ export const CreatePageView = ({
 
   return (
       <div>
-        Join Code: {code}<br />
+        Join Code: {code}<br /><br />
         {roleDivs}
+        <br />
         <button onClick={handleStartClick}>start</button>
       </div>
   );
