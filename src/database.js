@@ -54,7 +54,7 @@ export function registerAssignmentCallback(gameId, callback, context) {
     firebase.database().ref('/' + gameSnapshot.key + '/players').on('value', function(playersSnapshot) {
       var players = playersSnapshot.val();
       callback(players);
-    }, undefined, context);
+    });
   });
 }
 
