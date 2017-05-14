@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const JoinPageView = ({
+export const InfoPageView = ({
   role
 }) => {
   return (

@@ -1,14 +1,19 @@
 import React from 'react';
-import { JoinPageView } from './JoinPageView.jsx';
+import { InfoPageView } from './InfoPageView.jsx';
 import { createGame } from '../database.js';
 import { joinGame } from '../database.js';
 
-export class JoinPageContainer extends React.Component {
+export class InfoPageContainer extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+  }
 
   render() {
     return (
       <div>
-        <JoinPageView
+        <InfoPageView
           role="the Dude"
         />
       </div>
