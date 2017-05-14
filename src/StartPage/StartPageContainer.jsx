@@ -2,6 +2,7 @@ import React from 'react';
 import { StartPageView } from './StartPageView.jsx';
 import { createGame } from '../database.js';
 import { joinGame } from '../database.js';
+import { assignRoles } from '../database.js';
 
 export class StartPageContainer extends React.Component {
 

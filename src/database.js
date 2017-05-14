@@ -30,11 +30,31 @@ export function createGame(playerName) {
  * @parm {string} gameId
  */
 export function joinGame(playerName, gameId) {
-  var gameObj = {};
-  gameObj[playerName] = '';
+  var playersObj = {};
+  playersObj[playerName] = '';
 
-  firebase.database().ref('/').orderByChild('gameId').equalTo(gameId).limitToFirst(1).on('child_added', function(snapshot) {
-    firebase.database().ref('/' + snapshot.key + '/players').update(gameObj);
+  firebase.database().ref('/').orderByChild('gameId').equalTo(gameId).limitToFirst(1).on('child_added', function(gameSnapshot) {
+    firebase.database().ref('/' + gameSnapshot.key + '/players').update(playersObj);
+  });
+}
+
+/**
+ * Randomly assign the given roles to all players in the given game.
+ * @parm {string} playerName
+ * @parm {Array<string>} roles
+ */
+export function assignRoles(gameId, roles) {
+  roles = shuffle(roles);
+
+  firebase.database().ref('/').orderByChild('gameId').equalTo(gameId).limitToFirst(1).on('child_added', function(gameSnapshot) {
+    firebase.database().ref('/' + gameSnapshot.key + '/players').once('value').then(function(playersSnapshot) {
+      var playersObj = {};
+      playersSnapshot.forEach(function(s) {
+        var playerName = s.key;
+        playersObj[playerName] = roles.pop();
+      });
+      firebase.database().ref('/' + gameSnapshot.key + '/players').update(playersObj);
+    });;
   });
 }
 
@@ -43,4 +63,28 @@ function generateGameId(min, max) {
   var gameId = Math.floor(Math.random() * 10000);
   var paddedGameId = ("000" + gameId).slice(-4);
   return paddedGameId;
+}
+
+/*
+ * Shuffle the given array using the Fisher-Yates algorith.
+ * More info: http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+ * @param {Array<Object>} array
+ */
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
 }
