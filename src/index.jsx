@@ -1,5 +1,4 @@
 import {render} from 'react-dom';
-import AwesomeComponent from './AwesomeComponent.jsx';
 import { StartPage } from './StartPage';
 import React from 'react';
 import {
