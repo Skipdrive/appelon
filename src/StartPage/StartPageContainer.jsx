@@ -1,5 +1,7 @@
 import React from 'react';
 import { StartPageView } from './StartPageView.jsx';
+import { createGame } from '../database.js';
+import { joinGame } from '../database.js';
 
 export class StartPageContainer extends React.Component {
 
@@ -20,11 +22,11 @@ export class StartPageContainer extends React.Component {
   }
 
   handleJoinClick() {
-    alert(`name: ${this.state.name},\ncode: ${this.state.code}`);
+    joinGame(this.state.name, this.state.code);
   }
 
   handleCreateClick() {
-    alert(`name: ${this.state.name}`);
+    createGame(this.state.name);
   }
 
   render() {
