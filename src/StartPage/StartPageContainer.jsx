@@ -23,7 +23,7 @@ export class StartPageContainer extends React.Component {
 
   handleJoinClick() {
     joinGame(this.state.name, this.state.gameId);
-    this.props.history.push(`/info/${this.state.gameId}`);
+    this.props.history.push(`/info/`${this.state.name}`/${this.state.gameId}`);
   }
 
   handleCreateClick() {

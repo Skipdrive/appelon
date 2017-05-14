@@ -1,7 +1,6 @@
 import { assignRoles } from '../database.js';
 import { createGame } from '../database.js';
 import { CreatePageView } from './CreatePageView.jsx';
-import { joinGame } from '../database.js';
 import React from 'react';
 
 export class CreatePageContainer extends React.Component {
