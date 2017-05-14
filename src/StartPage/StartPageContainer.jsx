@@ -17,12 +17,13 @@ export class StartPageContainer extends React.Component {
     this.setState({ name: name.target.value });
   }
 
-  handleCodeChange(gameId) {
+  handleGameIdChange(gameId) {
     this.setState({ gameId: gameId.target.value });
   }
 
   handleJoinClick() {
     joinGame(this.state.name, this.state.gameId);
+    this.props.history.push(`/join/${this.state.gameId}`);
   }
 
   handleCreateClick() {
@@ -35,7 +36,7 @@ export class StartPageContainer extends React.Component {
       <div>
         <StartPageView
           handleNameChange={ (name) => this.handleNameChange(name) }
-          handleCodeChange={ (gameId) => this.handleCodeChange(gameId) }
+          handleGameIdChange={ (gameId) => this.handleGameIdChange(gameId) }
           handleJoinClick={ () => this.handleJoinClick() }
           handleCreateClick={ () => this.handleCreateClick() }
         />

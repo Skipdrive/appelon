@@ -1,6 +1,7 @@
-import {render} from 'react-dom';
-import { StartPage } from './StartPage';
 import { CreatePage } from './CreatePage';
+import { JoinPage } from './JoinPage';
+import { StartPage } from './StartPage';
+import {render} from 'react-dom';
 
 import React from 'react';
 import {
@@ -17,6 +18,7 @@ class App extends React.Component {
       <Router>
         <div>
           <Route exact path="/start" component={StartPage} />
+          <Route path="/join/:gameId" component={JoinPage} />
           <Route path="/create/:gameId" component={CreatePage} />
           <Redirect from="/" to="/start" />
         </div>
