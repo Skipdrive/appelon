@@ -44,7 +44,7 @@ export function joinGame(playerName, gameId) {
 
 /**
  * Randomly assign the given roles to all players in the given game.
- * @parm {string} playerName
+ * @parm {string} gameId
  * @parm {Array<string>} roles
  */
 export function assignRoles(gameId, roles) {
