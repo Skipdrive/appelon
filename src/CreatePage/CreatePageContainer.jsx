@@ -9,7 +9,7 @@ export class CreatePageContainer extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      code: props.code,
+      gameId: props.gameId,
     };
 
     this.roles = [];
@@ -36,7 +36,7 @@ export class CreatePageContainer extends React.Component {
         <CreatePageView
           handleStartClick={ () => this.handleStartClick() }
           handleCheckboxChange={ (e) => this.handleCheckboxChange(e) }
-          code={this.props.match.params.code}
+          gameId={this.props.match.params.gameId}
         />
       </div>
     );

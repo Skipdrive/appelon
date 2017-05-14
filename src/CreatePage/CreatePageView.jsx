@@ -2,7 +2,7 @@ import React from 'react';
 import { roles } from '../constants';
 
 export const CreatePageView = ({
-  code,
+  gameId,
   handleStartClick,
   handleCheckboxChange
 }) => {
@@ -20,7 +20,7 @@ export const CreatePageView = ({
 
   return (
       <div>
-        Join Code: {code}<br /><br />
+        Game Id: {gameId}<br /><br />
         {roleDivs}
         <br />
         <button onClick={handleStartClick}>start</button>

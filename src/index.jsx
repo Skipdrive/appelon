@@ -17,7 +17,7 @@ class App extends React.Component {
       <Router>
         <div>
           <Route exact path="/start" component={StartPage} />
-          <Route path="/create/:code" component={CreatePage} />
+          <Route path="/create/:gameId" component={CreatePage} />
           <Redirect from="/" to="/start" />
         </div>
       </Router>
