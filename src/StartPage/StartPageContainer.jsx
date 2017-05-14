@@ -2,7 +2,6 @@ import React from 'react';
 import { StartPageView } from './StartPageView.jsx';
 import { createGame } from '../database.js';
 import { joinGame } from '../database.js';
-import { assignRoles } from '../database.js';
 
 export class StartPageContainer extends React.Component {
 
@@ -28,7 +27,7 @@ export class StartPageContainer extends React.Component {
 
   handleCreateClick() {
     createGame(this.state.name);
-    this.props.history.push('/create');
+    this.props.history.push(`/create/${this.state.code}`);
   }
 
   render() {
