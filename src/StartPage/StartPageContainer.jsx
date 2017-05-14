@@ -27,6 +27,7 @@ export class StartPageContainer extends React.Component {
 
   handleCreateClick() {
     createGame(this.state.name);
+    this.props.history.push('/create');
   }
 
   render() {
