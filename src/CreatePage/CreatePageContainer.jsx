@@ -8,15 +8,12 @@ export class CreatePageContainer extends React.Component {
 
   constructor(props){
     super(props);
-    this.state = {
-      gameId: props.gameId,
-    };
-
     this.roles = [];
+    this.gameId = this.props.match.params.gameId;
   }
 
   handleStartClick() {
-    console.log(this.roles);
+    assignRoles(this.gameId, this.roles);
   }
 
   handleCheckboxChange(e) {
