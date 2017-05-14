@@ -1,19 +1,20 @@
-import React from 'react';
 import { InfoPageView } from './InfoPageView.jsx';
+import { registerAssignmentCallback } from '../database';
+import React from 'react';
 
 export class InfoPageContainer extends React.Component {
 
   constructor(props) {
     super(props);
 
-    this.gameId = this.props.match.params;
-    this.playerName = this.props.match.playerName;
+    this.gameId = this.props.match.params.gameId;
+    this.playerName = this.props.match.params.playerName;
 
     this.state = { role: '' };
   }
 
   componentWillMount(){
-    zachFunc(this.gameId, this.playerName, (role) => {
+    registerAssignmentCallback(this.playerName, this.gameId, (role) => {
       this.setState({ role });
     });
   }
