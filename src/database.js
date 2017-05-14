@@ -58,7 +58,7 @@ export function assignRoles(gameId, roles) {
   });
 }
 
-/*
+/**
  * Get a 4-digit padded random integer between 0000 and 9999.
  * @return {string} The game id.
  */
@@ -68,7 +68,7 @@ function generateGameId() {
   return paddedGameId;
 }
 
-/*
+/**
  * Shuffle the given array using the Fisher-Yates algorith.
  * More info: http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
  * @param {Array<Object>} array
