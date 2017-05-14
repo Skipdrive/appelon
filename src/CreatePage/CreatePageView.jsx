@@ -1,18 +1,28 @@
 import React from 'react';
+import { roles } from '../constants';
 
 export const CreatePageView = ({
-  joinCode,
+  gameId,
   handleStartClick,
+  handleCheckboxChange
 }) => {
+
+  const roleDivs = [];
+  Object.keys(roles).forEach((role) => {
+    for (let i = 0; i < roles[role].max_count; i++) {
+        roleDivs.push(
+          <div>
+            {role}<input onChange={handleCheckboxChange} type="checkbox" id={role} /><br />
+          </div>
+        );
+    }
+  });
+
   return (
       <div>
-        Join Code: {joinCode}<br />
-        <div>
-          character1: <input type="checkbox" /><br />
-          character2: <input type="checkbox" /><br />
-          character3: <input type="checkbox" /><br />
-          character4: <input type="checkbox" /><br />
-        </div>
+        Game Id: {gameId}<br /><br />
+        {roleDivs}
+        <br />
         <button onClick={handleStartClick}>start</button>
       </div>
   );

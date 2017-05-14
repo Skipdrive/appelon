@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const StartPageView = ({
-  handleCodeChange,
+  handleGameIdChange,
   handleCreateClick,
   handleJoinClick,
   handleNameChange,
@@ -9,7 +9,7 @@ export const StartPageView = ({
   return (
       <div>
         <input placeholder="name" onChange={handleNameChange} /> <br />
-        <input placeholder="group code" onChange={handleCodeChange} /><button onClick={handleJoinClick}>Join</button><br />
+        <input placeholder="game id" onChange={handleGameIdChange} /><button onClick={handleJoinClick}>Join</button><br />
         <button onClick={handleCreateClick}>Create</button>
       </div>
   );

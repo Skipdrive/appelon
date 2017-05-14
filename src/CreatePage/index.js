@@ -1,1 +1,1 @@
-export { CreatePageView as CreatePage } from './CreatePageView.jsx';
+export { CreatePageContainer as CreatePage } from './CreatePageContainer.jsx';
