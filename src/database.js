@@ -9,20 +9,32 @@ var config = {
 };
 firebase.initializeApp(config);
 
+/**
+ * Add a new game entry to the database.
+ * @parm {string} playerName
+ */
 export function createGame(playerName) {
-  var gameObj = {};
-  gameObj['gameId'] = generateGameId();
-  gameObj[playerName] = '';
+  var gameObj = {
+    players: {
+      [playerName]: ''
+    },
+    gameId: generateGameId(),
+  };
 
   firebase.database().ref('/').push(gameObj);
 }
 
+/**
+ * Add the given name to the existing game. Does nothing if the gameId doesn't exist.
+ * @parm {string} playerName
+ * @parm {string} gameId
+ */
 export function joinGame(playerName, gameId) {
   var gameObj = {};
   gameObj[playerName] = '';
 
   firebase.database().ref('/').orderByChild('gameId').equalTo(gameId).limitToFirst(1).on('child_added', function(snapshot) {
-    firebase.database().ref('/' + snapshot.key).update(gameObj);
+    firebase.database().ref('/' + snapshot.key + '/players').update(gameObj);
   });
 }
 
