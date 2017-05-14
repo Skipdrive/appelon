@@ -12,16 +12,20 @@ firebase.initializeApp(config);
 /**
  * Add a new game entry to the database.
  * @parm {string} playerName
+ * @return {string} The newly created game id.
  */
 export function createGame(playerName) {
+  var gameId = generateGameId();
   var gameObj = {
     players: {
       [playerName]: ''
     },
-    gameId: generateGameId(),
+    gameId: gameId,
   };
 
   firebase.database().ref('/').push(gameObj);
+
+  return gameId;
 }
 
 /**
