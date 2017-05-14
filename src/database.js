@@ -37,8 +37,24 @@ export function joinGame(playerName, gameId) {
   var playersObj = {};
   playersObj[playerName] = '';
 
-  firebase.database().ref('/').orderByChild('gameId').equalTo(gameId).limitToFirst(1).on('child_added', function(gameSnapshot) {
+  firebase.database().ref('/').orderByChild('gameId').equalTo(gameId).limitToLast(1).on('child_added', function(gameSnapshot) {
     firebase.database().ref('/' + gameSnapshot.key + '/players').update(playersObj);
+  });
+}
+
+/**
+ * Register callback for updating the player role after assignment.
+ * The callback will be called immediately and then each time the role updates.
+ * @parm {string} playerName
+ * @parm {string} gameId
+ * @parm {Function} callback
+ */
+export function registerAssignmentCallback(playerName, gameId, callback) {
+  firebase.database().ref('/').orderByChild('gameId').equalTo(gameId).limitToLast(1).on('child_added', function(gameSnapshot) {
+    firebase.database().ref('/' + gameSnapshot.key + '/players/' + playerName).on('value', function(roleSnapshot) {
+      var role = roleSnapshot.val();
+      callback(role);
+    });
   });
 }
 
@@ -50,7 +66,7 @@ export function joinGame(playerName, gameId) {
 export function assignRoles(gameId, roles) {
   roles = shuffle(roles);
 
-  firebase.database().ref('/').orderByChild('gameId').equalTo(gameId).limitToFirst(1).on('child_added', function(gameSnapshot) {
+  firebase.database().ref('/').orderByChild('gameId').equalTo(gameId).limitToLast(1).on('child_added', function(gameSnapshot) {
     firebase.database().ref('/' + gameSnapshot.key + '/players').once('value').then(function(playersSnapshot) {
       var playersObj = {};
       playersSnapshot.forEach(function(s) {
