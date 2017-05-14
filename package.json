@@ -4,7 +4,8 @@
   "description": "Avalon in its enhance app form",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack -d --watch & python -m SimpleHTTPServer 8080",
+    "build": "webpack -p & cp src/index.html build/index.html"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,19 @@
   "bugs": {
     "url": "https://github.com/Skipdrive/appelon/issues"
   },
-  "homepage": "https://github.com/Skipdrive/appelon#readme"
+  "homepage": "https://github.com/Skipdrive/appelon#readme",
+  "dependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "firebase": "^3.9.0",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-router-dom": "^4.1.1",
+    "webpack": "^2.5.1"
+  },
+  "devDependencies": {
+    "html-loader": "^0.4.5"
+  }
 }
