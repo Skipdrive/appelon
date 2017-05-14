@@ -58,8 +58,11 @@ export function assignRoles(gameId, roles) {
   });
 }
 
-/* Get a 4-digit padded random integer between 0000 and 9999. */
-function generateGameId(min, max) {
+/*
+ * Get a 4-digit padded random integer between 0000 and 9999.
+ * @return {string} The game id.
+ */
+function generateGameId() {
   var gameId = Math.floor(Math.random() * 10000);
   var paddedGameId = ("000" + gameId).slice(-4);
   return paddedGameId;
@@ -69,6 +72,7 @@ function generateGameId(min, max) {
  * Shuffle the given array using the Fisher-Yates algorith.
  * More info: http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
  * @param {Array<Object>} array
+ * @return {Array<Object>} The shuffled array.
  */
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
