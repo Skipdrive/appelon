@@ -1,9 +1,14 @@
 import React from 'react';
 
 export const InfoPageView = ({
-  role
+  knownPlayers,
+  // knownRoles, -- do something with this
+  myRole,
 }) => {
   return (
-      <div>I am {role}</div>
+    <div>
+      <div>I am: {myRole}</div>
+      <div>The people I know are: {knownPlayers.join(', ')}</div>
+    </div>
   );
 }

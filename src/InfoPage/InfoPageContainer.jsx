@@ -1,5 +1,6 @@
 import { InfoPageView } from './InfoPageView.jsx';
 import { registerAssignmentCallback } from '../database';
+import { roles } from '../constants';
 import React from 'react';
 
 export class InfoPageContainer extends React.Component {
@@ -10,20 +11,41 @@ export class InfoPageContainer extends React.Component {
     this.gameId = this.props.match.params.gameId;
     this.playerName = this.props.match.params.playerName;
 
-    this.state = { role: '' };
+    this.state = { role: '', knownRoles: [], knownPlayers: [] };
   }
 
   componentWillMount(){
-    registerAssignmentCallback(this.playerName, this.gameId, (role) => {
-      this.setState({ role });
-    });
+    const that = this;
+    registerAssignmentCallback(this.gameId, (playersToRoles) => {
+
+      const rolesToPlayers = {};
+      Object.keys(playersToRoles).forEach((player) => {
+        rolesToPlayers[playersToRoles[player]] = player;
+      });
+
+      const myRole = playersToRoles[that.playerName];
+      const knownRoles = roles[myRole].knows;
+
+      const knownPlayers = [];
+      knownRoles.forEach(role => {
+        if (rolesToPlayers[role]) knownPlayers.push(rolesToPlayers[role])
+      });
+
+      this.setState({
+        role: myRole,
+        knownRoles,
+        knownPlayers
+      });
+    }, this);
   }
 
   render() {
     return (
       <div>
         <InfoPageView
-          role={this.state.role}
+          myRole={this.state.role}
+          knownRoles={this.state.knownRoles}
+          knownPlayers={this.state.knownPlayers}
         />
       </div>
     );
