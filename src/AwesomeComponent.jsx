@@ -13,7 +13,7 @@ class AwesomeComponent extends React.Component {
   onLike () {
     let newLikesCount = this.state.likesCount + 1;
     this.setState({likesCount: newLikesCount});
-    joinGame('Josh', '0646');
+    joinGame('Josh', '3859');
     // createGame('Zach');
   }
 

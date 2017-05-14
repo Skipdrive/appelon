@@ -26,13 +26,7 @@ export function joinGame(playerName, gameId) {
   });
 }
 
-/**
- * Get a random integer between `min` and `max`.
- *
- * @param {number} min - min number
- * @param {number} max - max number
- * @return {int} a random integer
- */
+/* Get a 4-digit padded random integer between 0000 and 9999. */
 function generateGameId(min, max) {
   var gameId = Math.floor(Math.random() * 10000);
   var paddedGameId = ("000" + gameId).slice(-4);
