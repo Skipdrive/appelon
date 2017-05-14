@@ -49,12 +49,12 @@ export function joinGame(playerName, gameId) {
  * @parm {function(players)} callback The callback which takes in the players as a parameter.
  *   Players is an object mapping human names to character roles.
  */
-export function registerAssignmentCallback(gameId, callback) {
+export function registerAssignmentCallback(gameId, callback, context) {
   firebase.database().ref('/').orderByChild('gameId').equalTo(gameId).limitToLast(1).on('child_added', function(gameSnapshot) {
     firebase.database().ref('/' + gameSnapshot.key + '/players').on('value', function(playersSnapshot) {
       var players = playersSnapshot.val();
       callback(players);
-    });
+    }, undefined, context);
   });
 }
 
