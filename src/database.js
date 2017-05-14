@@ -43,6 +43,22 @@ export function joinGame(playerName, gameId) {
 }
 
 /**
+ * Register callback for updating the player role after assignment.
+ * The callback will be called immediately and then each time the role updates.
+ * @parm {string} playerName
+ * @parm {string} gameId
+ * @parm {Function} callback
+ */
+export function registerAssignmentCallback(playerName, gameId, callback) {
+  firebase.database().ref('/').orderByChild('gameId').equalTo(gameId).limitToLast(1).on('child_added', function(gameSnapshot) {
+    firebase.database().ref('/' + gameSnapshot.key + '/players/' + playerName).on('value', function(roleSnapshot) {
+      var role = roleSnapshot.val();
+      callback(role);
+    });
+  });
+}
+
+/**
  * Randomly assign the given roles to all players in the given game.
  * @parm {string} gameId
  * @parm {Array<string>} roles
