@@ -1,10 +1,14 @@
 import {render} from 'react-dom';
 import { StartPage } from './StartPage';
+import { CreatePage } from './CreatePage';
+
 import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Link
+  Redirect,
+  Link,
+  browserHistory
 } from 'react-router-dom'
 
 class App extends React.Component {
@@ -12,9 +16,9 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <StartPage />
-
-          <Route path="/start" component={StartPage}/>
+          <Route exact path="/start" component={StartPage} />
+          <Route path="/create" component={CreatePage} />
+          <Redirect from="/" to="/start" />
         </div>
       </Router>
     );
