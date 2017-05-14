@@ -37,7 +37,7 @@ export function joinGame(playerName, gameId) {
   var playersObj = {};
   playersObj[playerName] = '';
 
-  firebase.database().ref('/').orderByChild('gameId').equalTo(gameId).limitToFirst(1).on('child_added', function(gameSnapshot) {
+  firebase.database().ref('/').orderByChild('gameId').equalTo(gameId).limitToLast(1).on('child_added', function(gameSnapshot) {
     firebase.database().ref('/' + gameSnapshot.key + '/players').update(playersObj);
   });
 }
@@ -50,7 +50,7 @@ export function joinGame(playerName, gameId) {
 export function assignRoles(gameId, roles) {
   roles = shuffle(roles);
 
-  firebase.database().ref('/').orderByChild('gameId').equalTo(gameId).limitToFirst(1).on('child_added', function(gameSnapshot) {
+  firebase.database().ref('/').orderByChild('gameId').equalTo(gameId).limitToLast(1).on('child_added', function(gameSnapshot) {
     firebase.database().ref('/' + gameSnapshot.key + '/players').once('value').then(function(playersSnapshot) {
       var playersObj = {};
       playersSnapshot.forEach(function(s) {
