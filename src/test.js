@@ -9,9 +9,32 @@ var config = {
 };
 firebase.initializeApp(config);
 
-export function myFunction(p1, p2) {
-  firebase.database().ref('users/').set({
-    username: 'test',
-    email: 'email'
+export function createGame(playerName) {
+  var gameObj = {};
+  gameObj['gameId'] = generateGameId();
+  gameObj[playerName] = '';
+
+  firebase.database().ref('/').push(gameObj);
+}
+
+export function joinGame(playerName, gameId) {
+  var gameObj = {};
+  gameObj[playerName] = '';
+
+  firebase.database().ref('/').orderByChild('gameId').equalTo(gameId).limitToFirst(1).on('child_added', function(snapshot) {
+    firebase.database().ref('/' + snapshot.key).update(gameObj);
   });
+}
+
+/**
+ * Get a random integer between `min` and `max`.
+ *
+ * @param {number} min - min number
+ * @param {number} max - max number
+ * @return {int} a random integer
+ */
+function generateGameId(min, max) {
+  var gameId = Math.floor(Math.random() * 10000);
+  var paddedGameId = ("000" + gameId).slice(-4);
+  return paddedGameId;
 }

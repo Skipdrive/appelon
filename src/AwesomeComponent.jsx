@@ -1,5 +1,6 @@
 import React from 'react';
-import {myFunction} from './test.js';
+import {createGame} from './test.js';
+import {joinGame} from './test.js';
 
 class AwesomeComponent extends React.Component {
 
@@ -12,7 +13,8 @@ class AwesomeComponent extends React.Component {
   onLike () {
     let newLikesCount = this.state.likesCount + 1;
     this.setState({likesCount: newLikesCount});
-    myFunction();
+    joinGame('Josh', '0646');
+    // createGame('Zach');
   }
 
   render() {
