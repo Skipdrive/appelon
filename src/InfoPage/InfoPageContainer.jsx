@@ -36,7 +36,7 @@ export class InfoPageContainer extends React.Component {
         knownRoles,
         knownPlayers
       });
-    }, this);
+    });
   }
 
   render() {
