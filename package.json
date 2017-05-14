@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack -d --watch & python -m SimpleHTTPServer 8080",
-    "build" : "webpack -p & cp src/index.html build/index.html"
+    "build": "webpack -p & cp src/index.html build/index.html"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "firebase": "^3.9.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-router-dom": "^4.1.1",
     "webpack": "^2.5.1"
   },
   "devDependencies": {
