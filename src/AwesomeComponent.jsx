@@ -1,4 +1,5 @@
 import React from 'react';
+import {myFunction} from './test.js';
 
 class AwesomeComponent extends React.Component {
 
@@ -11,6 +12,7 @@ class AwesomeComponent extends React.Component {
   onLike () {
     let newLikesCount = this.state.likesCount + 1;
     this.setState({likesCount: newLikesCount});
+    myFunction();
   }
 
   render() {
