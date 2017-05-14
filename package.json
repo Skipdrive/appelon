@@ -4,9 +4,9 @@
   "description": "Avalon in its enhance app form",
   "main": "index.js",
   "scripts": {
-    "start": "webpack -d --watch",
-    "build" : "webpack -p"
-  }, 
+    "start": "webpack -d --watch & python -m SimpleHTTPServer 8080",
+    "build" : "webpack -p & cp src/index.html build/index.html"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Skipdrive/appelon.git"
