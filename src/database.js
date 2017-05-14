@@ -47,7 +47,7 @@ export function joinGame(playerName, gameId) {
  * The callback will be called immediately and then each time the role updates.
  * @parm {string} playerName
  * @parm {string} gameId
- * @parm {Function} callback
+ * @parm {function(role)} callback The callback which takes in the new role as a parameter.
  */
 export function registerAssignmentCallback(playerName, gameId, callback) {
   firebase.database().ref('/').orderByChild('gameId').equalTo(gameId).limitToLast(1).on('child_added', function(gameSnapshot) {
