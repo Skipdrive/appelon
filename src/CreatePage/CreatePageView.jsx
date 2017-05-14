@@ -1,18 +1,26 @@
 import React from 'react';
+import { roles } from '../constants';
 
 export const CreatePageView = ({
   code,
   handleStartClick,
 }) => {
+
+  const roleDivs = [];
+  Object.keys(roles).forEach((role) => {
+    for (let i = 0; i < roles[role].max_count; i++) {
+        roleDivs.push(
+          <div>
+            {role}<input type="checkbox" id={role} /><br />
+          </div>
+        );
+    }
+  });
+
   return (
       <div>
         Join Code: {code}<br />
-        <div>
-          character1: <input type="checkbox" /><br />
-          character2: <input type="checkbox" /><br />
-          character3: <input type="checkbox" /><br />
-          character4: <input type="checkbox" /><br />
-        </div>
+        {roleDivs}
         <button onClick={handleStartClick}>start</button>
       </div>
   );
